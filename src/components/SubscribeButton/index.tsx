@@ -14,8 +14,8 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       return;
     }
 
-    // criação da checkout session
     
+
   }
 
   return (
