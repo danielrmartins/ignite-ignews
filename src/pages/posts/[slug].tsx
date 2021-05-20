@@ -26,7 +26,7 @@ export default function Post({ post }: PostsProps) {
         <article className={styles.post}>
           <h1>{post.title}</h1>
           <time>{post.updatedAt}</time>
-          <div className={styles.postContent}  dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className={styles.postContent} dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
       </main>
     </>
@@ -37,8 +37,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   const session = await getSession({ req });
   const { slug } = params;
 
-  // if (!session) {
-  // }
+  if (!session.activeSubscription) {
+    return { redirect: { destination: '/', permanent: false } };
+  }
 
   const prismic = getPrismicClient(req);
 
