@@ -51,7 +51,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           case 'checkout.session.completed':
             const checkoutSession = event.data.object as Stripe.Checkout.Session;
 
-            await saveSubscription(checkoutSession.subscription.toString(), checkoutSession.customer.toString());
+            await saveSubscription(checkoutSession.subscription.toString(), checkoutSession.customer.toString(), true);
             break;
           default:
             throw new Error('Unhandled event.');
